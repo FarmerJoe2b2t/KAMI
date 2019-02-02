@@ -39,5 +39,5 @@ minecraft {
     version = project.mcVersion
     mappings = project.mappings
     runDir = 'run'
-    tweakClass = 'me.zeroeightsix.KamiTweaker'
+    tweakClass = 'me.zeroeightsix.kami.KamiTweaker'
 }
