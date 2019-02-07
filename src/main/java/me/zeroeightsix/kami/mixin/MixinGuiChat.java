@@ -1,4 +1,4 @@
-package me.zeroeightsix.kami.mixin.client;
+package me.zeroeightsix.kami.mixin;
 
 import me.zeroeightsix.kami.command.Command;
 import me.zeroeightsix.kami.gui.mc.KamiGuiChat;

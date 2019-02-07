@@ -1,10 +1,10 @@
-package me.zeroeightsix.kami.mixin.client;
+package me.zeroeightsix.kami.mixin;
 
 import me.zeroeightsix.kami.module.ModuleManager;
 import me.zeroeightsix.kami.module.modules.movement.EntitySpeed;
 import me.zeroeightsix.kami.util.Wrapper;
-import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.model.ModelBoat;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

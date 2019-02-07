@@ -1,11 +1,12 @@
 package me.zeroeightsix.kami.event.events;
 
+import me.zeroeightsix.kami.event.KamiEvent;
 import net.minecraft.client.gui.GuiScreen;
 
 /**
  * Created by 086 on 17/11/2017.
  */
-public class GuiScreenEvent {
+public class GuiScreenEvent extends KamiEvent {
 
     private GuiScreen screen;
 

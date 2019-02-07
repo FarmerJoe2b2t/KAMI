@@ -77,7 +77,7 @@ public class KamiTessellator extends Tessellator {
     }
 
     public static void drawBox(BlockPos blockPos, int r, int g, int b, int a, int sides) {
-        drawBox(INSTANCE.getBuffer(), blockPos.x, blockPos.y, blockPos.z, 1, 1, 1, r, g, b, a, sides);
+        drawBox(INSTANCE.getBuffer(), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 1, 1, 1, r, g, b, a, sides);
     }
 
     public static BufferBuilder getBufferBuilder() {

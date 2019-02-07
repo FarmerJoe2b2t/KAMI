@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.TreeMap;
 
+@Deprecated // TODO: kami command integration into 1.13 command sytem
 public class KamiGuiChat extends GuiChat {
 
     private String startString;

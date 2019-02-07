@@ -22,7 +22,7 @@ import java.util.Iterator;
 /**
  * Created by 086 on 25/01/2018.
  */
-
+@Deprecated
 @Module.Info(name = "Pathfind", category = Module.Category.MISC)
 public class Pathfind extends Module {
 

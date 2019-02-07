@@ -10,7 +10,7 @@ import me.zeroeightsix.kami.gui.rgui.component.listen.RenderListener;
 import me.zeroeightsix.kami.gui.rgui.component.listen.UpdateListener;
 import me.zeroeightsix.kami.gui.rgui.layout.Layout;
 import me.zeroeightsix.kami.gui.rgui.render.theme.Theme;
-import org.lwjgl.opengl.Display;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -54,7 +54,7 @@ public class Scrollpane extends OrganisedContainer {
                 //GL11.glTranslatef(-translatex, -translatey, 0);
                 int[] real = GUI.calculateRealPosition(Scrollpane.this);
                 int scale = DisplayGuiScreen.getScale();
-                GL11.glScissor(getX()*scale + real[0]*scale - ((Container) getParent()).getOriginOffsetX()-1, Display.getHeight() - getHeight()*scale - real[1]*scale - 1, getWidth()*scale + ((Container) getParent()).getOriginOffsetX()*scale + 1, getHeight()*scale+1);
+                GL11.glScissor(getX()*scale + real[0]*scale - ((Container) getParent()).getOriginOffsetX()-1, Minecraft.getMinecraft().mainWindow.getHeight() - getHeight()*scale - real[1]*scale - 1, getWidth()*scale + ((Container) getParent()).getOriginOffsetX()*scale + 1, getHeight()*scale+1);
                 GL11.glEnable(GL11.GL_SCISSOR_TEST);
             }
 

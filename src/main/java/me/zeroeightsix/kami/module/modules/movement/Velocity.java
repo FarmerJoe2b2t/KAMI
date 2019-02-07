@@ -25,9 +25,9 @@ public class Velocity extends Module {
         if (event.getEra() == KamiEvent.Era.PRE) {
             if (event.getPacket() instanceof SPacketEntityVelocity) {
                 SPacketEntityVelocity velocity = (SPacketEntityVelocity) event.getPacket();
-                if (velocity.getEntityID() == mc.player.entityId) {
+                if (velocity.getEntityID() == mc.player.getEntityId()) {
                     if (horizontal.getValue() == 0 && vertical.getValue() == 0) event.cancel();
-                    velocity.motionX *= horizontal.getValue();
+                    velocity.motionX *= horizontal.getValue(); // TODO: AT
                     velocity.motionY *= vertical.getValue();
                     velocity.motionZ *= horizontal.getValue();
                 }

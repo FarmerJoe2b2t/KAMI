@@ -17,6 +17,7 @@ import java.util.ArrayList;
 /**
  * Created by 086 on 15/12/2017.
  */
+@Deprecated
 @Module.Info(name = "PortalTracers", category = Module.Category.RENDER)
 public class PortalTracers extends Module {
 

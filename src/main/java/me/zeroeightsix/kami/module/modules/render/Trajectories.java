@@ -65,7 +65,7 @@ public class Trajectories extends Module {
                 GL11.glBegin(GL11.GL_LINES);
 
                 Vec3d a = positions.get(0);
-                GL11.glVertex3d(a.x - mc.getRenderManager().renderPosX, a.y - mc.getRenderManager().renderPosY, a.z - mc.getRenderManager().renderPosZ);
+                GL11.glVertex3d(a.x - mc.getRenderManager().renderPosX, a.y - mc.getRenderManager().renderPosY, a.z - mc.getRenderManager().renderPosZ); // TODO: AT
                 for (Vec3d v : positions) {
                     GL11.glVertex3d(v.x - mc.getRenderManager().renderPosX, v.y - mc.getRenderManager().renderPosY, v.z - mc.getRenderManager().renderPosZ);
                     GL11.glVertex3d(v.x - mc.getRenderManager().renderPosX, v.y - mc.getRenderManager().renderPosY, v.z - mc.getRenderManager().renderPosZ);

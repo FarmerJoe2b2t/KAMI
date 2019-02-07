@@ -1,4 +1,4 @@
-package me.zeroeightsix.kami.mixin.client;
+package me.zeroeightsix.kami.mixin;
 
 import me.zeroeightsix.kami.module.modules.player.TpsSync;
 import me.zeroeightsix.kami.util.LagCompensator;

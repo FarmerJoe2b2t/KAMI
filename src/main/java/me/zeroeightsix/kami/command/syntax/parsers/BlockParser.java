@@ -15,7 +15,7 @@ public class BlockParser extends AbstractParser {
     public BlockParser() {
         if (!blockNames.isEmpty()) return;
         for (ResourceLocation resourceLocation : Block.REGISTRY.getKeys()){
-            blockNames.put(resourceLocation.toString().replace("minecraft:", "").replace("_", ""), Block.REGISTRY.getObject(resourceLocation));
+            blockNames.put(resourceLocation.toString().replace("minecraft:", "").replace("_", ""), Block.REGISTRY.get(resourceLocation));
         }
     }
 

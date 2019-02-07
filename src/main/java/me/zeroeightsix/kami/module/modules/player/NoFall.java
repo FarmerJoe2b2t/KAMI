@@ -28,7 +28,7 @@ public class NoFall extends Module {
     @EventHandler
     public Listener<PacketEvent.Send> sendListener = new Listener<>(event -> {
         if (event.getPacket() instanceof CPacketPlayer && packet.getValue()) {
-            ((CPacketPlayer) event.getPacket()).onGround = true;
+            ((CPacketPlayer) event.getPacket()).onGround = true; // TODO: AT
         }
     });
 
@@ -36,7 +36,7 @@ public class NoFall extends Module {
     public void onUpdate() {
         if (bucket.getValue() && mc.player.fallDistance >= distance.getValue() && !EntityUtil.isAboveWater(mc.player) && System.currentTimeMillis() - last > 100) {
             Vec3d posVec = mc.player.getPositionVector();
-            RayTraceResult result = mc.world.rayTraceBlocks(posVec, posVec.addVector(0, -5.33f, 0), true, true, false);
+            RayTraceResult result = mc.world.rayTraceBlocks(posVec, posVec.add(0, -5.33f, 0), true, true, false);
             if (result != null && result.typeOfHit == RayTraceResult.Type.BLOCK) {
                 EnumHand hand = EnumHand.MAIN_HAND;
                 if (mc.player.getHeldItemOffhand().getItem() == Items.WATER_BUCKET) hand = EnumHand.OFF_HAND;

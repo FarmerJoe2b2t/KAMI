@@ -81,7 +81,7 @@ public class Tracers extends Module {
         cycler.setNext(opacity);
         GlStateManager.disableLighting();
         GL11.glLoadIdentity();
-        mc.entityRenderer.orientCamera(mc.getRenderPartialTicks());
+        mc.entityRenderer.orientCamera(mc.getRenderPartialTicks()); // TODO: AT
 
         GL11.glBegin(GL11.GL_LINES);
         {
@@ -103,7 +103,7 @@ public class Tracers extends Module {
 
     private int getColour(Entity entity) {
         if (entity instanceof EntityPlayer) {
-            return Friends.isFriend(entity.getName()) ? ColourUtils.Colors.RAINBOW : ColourUtils.Colors.WHITE;
+            return Friends.isFriend(entity.getName().getFormattedText()) ? ColourUtils.Colors.RAINBOW : ColourUtils.Colors.WHITE;
         }else{
             if (EntityUtil.isPassive(entity)) return ColourUtils.Colors.GREEN;
             else
@@ -116,7 +116,7 @@ public class Tracers extends Module {
     }
 
     public static double[] interpolate(Entity entity) {
-        double posX = interpolate(entity.posX, entity.lastTickPosX) - mc.getRenderManager().renderPosX;
+        double posX = interpolate(entity.posX, entity.lastTickPosX) - mc.getRenderManager().renderPosX; // TODO: AT
         double posY = interpolate(entity.posY, entity.lastTickPosY) - mc.getRenderManager().renderPosY;
         double posZ = interpolate(entity.posZ, entity.lastTickPosZ) - mc.getRenderManager().renderPosZ;
         return new double[] { posX, posY, posZ };
@@ -148,7 +148,7 @@ public class Tracers extends Module {
         GL11.glColor4f(red, green, blue, opacity);
         GlStateManager.disableLighting();
         GL11.glLoadIdentity();
-        mc.entityRenderer.orientCamera(mc.getRenderPartialTicks());
+        mc.entityRenderer.orientCamera(mc.getRenderPartialTicks()); // TODO: AT
 
         GL11.glBegin(GL11.GL_LINES);
         {

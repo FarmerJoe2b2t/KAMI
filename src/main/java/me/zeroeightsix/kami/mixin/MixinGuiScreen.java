@@ -1,4 +1,4 @@
-package me.zeroeightsix.kami.mixin.client;
+package me.zeroeightsix.kami.mixin;
 
 import me.zeroeightsix.kami.module.ModuleManager;
 import net.minecraft.client.Minecraft;
@@ -22,12 +22,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(GuiScreen.class)
 public class MixinGuiScreen {
 
-    RenderItem itemRender = Minecraft.getMinecraft().getRenderItem();
+    ItemRenderer itemRender = Minecraft.getMinecraft().getRenderItem();
     FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
 
     @Inject(method = "renderToolTip", at = @At("HEAD"), cancellable = true)
     public void renderToolTip(ItemStack stack, int x, int y, CallbackInfo info) {
-        if (ModuleManager.isModuleEnabled("ShulkerPreview") && stack.getItem() instanceof ItemShulkerBox) {
+        if (ModuleManager.isModuleEnabled("ShulkerPreview") && stack.getItem() instanceof ItemShulkerBox) { // TODO: What's the new item for shulker boxes??
             NBTTagCompound tagCompound = stack.getTagCompound();
             if (tagCompound != null && tagCompound.hasKey("BlockEntityTag", 10)) {
                 NBTTagCompound blockEntityTag = tagCompound.getCompoundTag("BlockEntityTag");
@@ -45,7 +45,7 @@ public class MixinGuiScreen {
                     GlStateManager.disableDepth();
 
 
-                    int width = Math.max(144, fontRenderer.getStringWidth(stack.getDisplayName())+3); //9*16
+                    int width = Math.max(144, fontRenderer.getStringWidth(stack.getDisplayName().getFormattedText())+3); //9*16
 
                     int x1 = x + 12;
                     int y1 = y - 12;
@@ -62,7 +62,7 @@ public class MixinGuiScreen {
                     this.drawGradientRectP(x1 - 3, y1 - 3, x1 + width + 3, y1 - 3 + 1, 1347420415, 1347420415);
                     this.drawGradientRectP(x1 - 3, y1 + height + 2, x1 + width + 3, y1 + height + 3, 1344798847, 1344798847);
 
-                    fontRenderer.drawString(stack.getDisplayName(), x+12, y-12, 0xffffff);
+                    fontRenderer.drawString(stack.getDisplayName().getFormattedText(), x+12, y-12, 0xffffff);
 
                     GlStateManager.enableBlend();
                     GlStateManager.enableAlpha();

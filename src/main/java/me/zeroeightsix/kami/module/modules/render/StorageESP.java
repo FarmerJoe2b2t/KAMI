@@ -40,7 +40,7 @@ public class StorageESP extends Module {
         if(entity instanceof EntityMinecartChest)
             return ColourUtils.Colors.ORANGE;
         else if(entity instanceof EntityItemFrame &&
-                ((EntityItemFrame) entity).getDisplayedItem().getItem() instanceof ItemShulkerBox)
+                ((EntityItemFrame) entity).getDisplayedItem().getItem() instanceof ItemShulkerBox) // TODO: ehh
             return ColourUtils.Colors.YELLOW;
         else
             return -1;
@@ -58,10 +58,11 @@ public class StorageESP extends Module {
             if (tileEntity instanceof TileEntityChest) {
                 TileEntityChest chest = (TileEntityChest) tileEntity;
                 // Leave only the colliding face and then flip the bits (~) to have ALL but that face
-                if (chest.adjacentChestZNeg != null) side = ~(side & GeometryMasks.Quad.NORTH);
-                if (chest.adjacentChestXPos != null) side = ~(side & GeometryMasks.Quad.EAST);
-                if (chest.adjacentChestZPos != null) side = ~(side & GeometryMasks.Quad.SOUTH);
-                if (chest.adjacentChestXNeg != null) side = ~(side & GeometryMasks.Quad.WEST);
+                // if (chest.adjacentChestZNeg != null) side = ~(side & GeometryMasks.Quad.NORTH);
+                // if (chest.adjacentChestXPos != null) side = ~(side & GeometryMasks.Quad.EAST);
+                // if (chest.adjacentChestZPos != null) side = ~(side & GeometryMasks.Quad.SOUTH);
+                // if (chest.adjacentChestXNeg != null) side = ~(side & GeometryMasks.Quad.WEST);
+                // TODO: ^
             }
             if(color != -1) a.add(new Triplet<>(pos, color, side)); //GeometryTessellator.drawCuboid(event.getBuffer(), pos, GeometryMasks.Line.ALL, color);
         }

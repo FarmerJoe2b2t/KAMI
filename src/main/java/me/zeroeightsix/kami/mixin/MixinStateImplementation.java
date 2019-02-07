@@ -1,4 +1,4 @@
-package me.zeroeightsix.kami.mixin.client;
+package me.zeroeightsix.kami.mixin;
 
 import me.zeroeightsix.kami.KamiMod;
 import me.zeroeightsix.kami.event.events.AddCollisionBoxToListEvent;
@@ -9,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.BlockStateContainer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * Created by 086 on 11/12/2017.
  */
-@Mixin(BlockStateContainer.StateImplementation.class)
+@Mixin(BlockStateContainer.StateImplementation.class) // TODO: just fix it
 public class MixinStateImplementation {
 
     @Shadow @Final private Block block;

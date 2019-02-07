@@ -26,6 +26,7 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * Created by 086 on 30/06/2017.
  */
+@Deprecated
 public class InputField extends AbstractComponent {
 
     char echoChar = 0;

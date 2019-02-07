@@ -68,7 +68,7 @@ public class ChunkFinder extends Module {
             dirty = false;
         }
 
-        double x = mc.getRenderManager().renderPosX;
+        double x = mc.getRenderManager().renderPosX; // TODO: AT
         double y = relative.getValue() ? 0 : -mc.getRenderManager().renderPosY;
         double z = mc.getRenderManager().renderPosZ;
         GL11.glTranslated(-x, y + yOffset.getValue(), -z);

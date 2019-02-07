@@ -14,6 +14,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.RayTraceFluidMode;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.Iterator;
@@ -51,7 +52,7 @@ public class Aura extends Module {
             if (((EntityLivingBase) target).hurtTime != 0 && wait.getValue()) continue;
             if (!walls.getValue() && (!mc.player.canEntityBeSeen(target) && !canEntityFeetBeSeen(target)))
                 continue; // If walls is on & you can't see the feet or head of the target, skip. 2 raytraces needed
-            if (players.getValue() && target instanceof EntityPlayer && !Friends.isFriend(target.getName())) {
+            if (players.getValue() && target instanceof EntityPlayer && !Friends.isFriend(target.getName().getFormattedText())) {
                 attack(target);
                 return;
             } else {
@@ -76,6 +77,6 @@ public class Aura extends Module {
     }
 
     private boolean canEntityFeetBeSeen(Entity entityIn) {
-        return mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posX + mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(entityIn.posX, entityIn.posY, entityIn.posZ), false, true, false) == null;
+        return mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posX + mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(entityIn.posX, entityIn.posY, entityIn.posZ), RayTraceFluidMode.ALWAYS, true, false) == null;
     }
 }

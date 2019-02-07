@@ -76,7 +76,7 @@ public class Jesus extends Module {
             for (int z = MathHelper.floor(entity.posZ); z < MathHelper.ceil(entity.posZ); z++) {
                 BlockPos pos = new BlockPos(x, MathHelper.floor(y), z);
 
-                if (Wrapper.getWorld().getBlockState(pos).getBlock().isFullBlock(Wrapper.getWorld().getBlockState(pos))) return true;
+                if (Wrapper.getWorld().getBlockState(pos).getBlock().isFullCube(Wrapper.getWorld().getBlockState(pos))) return true;
             }
 
         return false;

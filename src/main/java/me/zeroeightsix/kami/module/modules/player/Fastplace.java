@@ -10,6 +10,6 @@ public class Fastplace extends Module {
 
     @Override
     public void onUpdate() {
-        mc.rightClickDelayTimer = 0;
+        mc.rightClickDelayTimer = 0; // TODO: AT
     }
 }

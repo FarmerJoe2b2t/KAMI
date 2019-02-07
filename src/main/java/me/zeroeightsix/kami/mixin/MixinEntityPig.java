@@ -1,4 +1,4 @@
-package me.zeroeightsix.kami.mixin.client;
+package me.zeroeightsix.kami.mixin;
 
 import me.zeroeightsix.kami.module.ModuleManager;
 import net.minecraft.entity.passive.EntityPig;

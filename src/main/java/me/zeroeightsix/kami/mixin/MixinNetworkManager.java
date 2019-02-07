@@ -1,4 +1,4 @@
-package me.zeroeightsix.kami.mixin.client;
+package me.zeroeightsix.kami.mixin;
 
 import io.netty.channel.ChannelHandlerContext;
 import me.zeroeightsix.kami.KamiMod;

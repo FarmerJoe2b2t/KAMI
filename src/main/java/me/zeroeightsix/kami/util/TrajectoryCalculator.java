@@ -76,6 +76,7 @@ public class TrajectoryCalculator {
             double[] ipos = interpolate(shooter);
 
             // Set the starting angles of the entity
+            // TODO: AT
             this.setLocationAndAngles(ipos[0] + Wrapper.getMinecraft().getRenderManager().renderPosX, ipos[1] + this.shooter.getEyeHeight() + Wrapper.getMinecraft().getRenderManager().renderPosY, ipos[2] + Wrapper.getMinecraft().getRenderManager().renderPosZ,
                     this.shooter.rotationYaw, this.shooter.rotationPitch);
             Vec3d startingOffset = new Vec3d(MathHelper.cos(this.yaw / 180.0F * (float) Math.PI) * 0.16F, 0.1d,
@@ -279,7 +280,7 @@ public class TrajectoryCalculator {
          */
         private void setThrowableHeading(Vec3d motion, float velocity) {
             // Divide the current motion by the length of the vector
-            this.motion = div(motion, (float) motion.lengthVector());
+            this.motion = div(motion, (float) motion.length());
             // Multiply by the velocity
             this.motion = mult(this.motion, velocity);
         }
@@ -304,9 +305,9 @@ public class TrajectoryCalculator {
     }
 
     public static double[] interpolate(Entity entity) {
-        double posX = interpolate(entity.posX, entity.lastTickPosX) - Wrapper.getMinecraft().renderManager.renderPosX;
-        double posY = interpolate(entity.posY, entity.lastTickPosY) - Wrapper.getMinecraft().renderManager.renderPosY;
-        double posZ = interpolate(entity.posZ, entity.lastTickPosZ) - Wrapper.getMinecraft().renderManager.renderPosZ;
+        double posX = interpolate(entity.posX, entity.lastTickPosX) - Wrapper.getMinecraft().getRenderManager().renderPosX;
+        double posY = interpolate(entity.posY, entity.lastTickPosY) - Wrapper.getMinecraft().getRenderManager().renderPosY;
+        double posZ = interpolate(entity.posZ, entity.lastTickPosZ) - Wrapper.getMinecraft().getRenderManager().renderPosZ;
         return new double[] { posX, posY, posZ };
     }
 

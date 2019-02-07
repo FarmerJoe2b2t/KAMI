@@ -64,7 +64,7 @@ public class ChatEncryption extends Module {
     @EventHandler
     private Listener<PacketEvent.Receive> receiveListener = new Listener<>(event -> {
         if (event.getPacket() instanceof SPacketChat) {
-            String s = ((SPacketChat) event.getPacket()).getChatComponent().getUnformattedText();
+            String s = ((SPacketChat) event.getPacket()).getChatComponent().getUnformattedComponentText();
 
             Matcher matcher = CHAT_PATTERN.matcher(s);
             String username = "unnamed";
@@ -88,7 +88,7 @@ public class ChatEncryption extends Module {
                     break;
             }
 
-            ((SPacketChat) event.getPacket()).chatComponent = new TextComponentString(Command.SECTIONSIGN() + "b" + username + Command.SECTIONSIGN() + "r: " + builder.toString());
+            ((SPacketChat) event.getPacket()).chatComponent = new TextComponentString(Command.SECTIONSIGN() + "b" + username + Command.SECTIONSIGN() + "r: " + builder.toString()); // TODO: AT
         }
     });
 

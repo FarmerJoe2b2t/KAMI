@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceFluidMode;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import org.lwjgl.opengl.GL11;
@@ -38,7 +39,7 @@ public class EyeFinder extends Module {
     }
 
     private void drawLine(EntityLivingBase e) {
-        RayTraceResult result = e.rayTrace(6, Minecraft.getMinecraft().getRenderPartialTicks());
+        RayTraceResult result = e.rayTrace(6, Minecraft.getMinecraft().getRenderPartialTicks(), RayTraceFluidMode.ALWAYS);
         if (result == null) return;
         Vec3d eyes = e.getPositionEyes(Minecraft.getMinecraft().getRenderPartialTicks());
 
@@ -46,7 +47,7 @@ public class EyeFinder extends Module {
         GlStateManager.disableTexture2D();
         GlStateManager.disableLighting();
 
-        double posx = eyes.x - mc.getRenderManager().renderPosX;
+        double posx = eyes.x - mc.getRenderManager().renderPosX; // TODO: AT
         double posy = eyes.y - mc.getRenderManager().renderPosY;
         double posz = eyes.z - mc.getRenderManager().renderPosZ;
         double posx2 = result.hitVec.x - mc.getRenderManager().renderPosX;
@@ -68,9 +69,9 @@ public class EyeFinder extends Module {
             KamiTessellator.prepare(GL11.GL_QUADS);
             GL11.glEnable(GL11.GL_DEPTH_TEST);
             BlockPos b = result.getBlockPos();
-            float x = b.x - .01f;
-            float y = b.y - .01f;
-            float z = b.z - .01f;
+            float x = b.getX() - .01f;
+            float y = b.getY() - .01f;
+            float z = b.getZ() - .01f;
             KamiTessellator.drawBox(KamiTessellator.getBufferBuilder(), x, y, z, 1.01f, 1.01f, 1.01f, 51, 25, 73, 200, GeometryMasks.Quad.ALL);
             KamiTessellator.release();
         }

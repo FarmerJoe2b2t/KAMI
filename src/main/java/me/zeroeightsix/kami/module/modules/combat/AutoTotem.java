@@ -25,7 +25,7 @@ public class AutoTotem extends Module {
         if (returnI) {
             int t = -1;
             for (int i = 0; i < 45; i++)
-                if (mc.player.inventory.getStackInSlot(i).isEmpty) {
+                if (mc.player.inventory.getStackInSlot(i).isEmpty()) {
                     t = i;
                     break;
                 }
@@ -36,14 +36,14 @@ public class AutoTotem extends Module {
         totems = mc.player.inventory.mainInventory.stream().filter(itemStack -> itemStack.getItem() == Items.TOTEM_OF_UNDYING).mapToInt(ItemStack::getCount).sum();
         if (mc.player.getHeldItemOffhand().getItem() == Items.TOTEM_OF_UNDYING) totems++;
         else {
-            if (soft.getValue() && !mc.player.getHeldItemOffhand().isEmpty) return;
+            if (soft.getValue() && !mc.player.getHeldItemOffhand().isEmpty()) return;
             if (moving) {
                 mc.playerController.windowClick(0, 45, 0, ClickType.PICKUP, mc.player);
                 moving = false;
-                if (!mc.player.inventory.itemStack.isEmpty()) returnI = true;
+                if (!mc.player.inventory.getItemStack().isEmpty()) returnI = true;
                 return;
             }
-            if (mc.player.inventory.itemStack.isEmpty()) {
+            if (mc.player.inventory.getItemStack().isEmpty()) {
                 if (totems == 0) return;
                 int t = -1;
                 for (int i = 0; i < 45; i++)
@@ -57,7 +57,7 @@ public class AutoTotem extends Module {
             } else if (!soft.getValue()) {
                 int t = -1;
                 for (int i = 0; i < 45; i++)
-                    if (mc.player.inventory.getStackInSlot(i).isEmpty) {
+                    if (mc.player.inventory.getStackInSlot(i).isEmpty()) {
                         t = i;
                         break;
                     }

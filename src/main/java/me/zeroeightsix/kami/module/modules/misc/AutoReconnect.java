@@ -6,6 +6,7 @@ import me.zeroeightsix.kami.event.events.GuiScreenEvent;
 import me.zeroeightsix.kami.module.Module;
 import me.zeroeightsix.kami.setting.Setting;
 import me.zeroeightsix.kami.setting.Settings;
+import net.minecraft.client.gui.GuiConnecting;
 import net.minecraft.client.gui.GuiDisconnected;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
@@ -22,7 +23,7 @@ public class AutoReconnect extends Module {
     @EventHandler
     public Listener<GuiScreenEvent.Closed> closedListener = new Listener<>(event -> {
         if (event.getScreen() instanceof GuiConnecting)
-            cServer = mc.currentServerData;
+            cServer = mc.currentServerData; // TODO: AT
     });
 
     @EventHandler
@@ -37,7 +38,7 @@ public class AutoReconnect extends Module {
         long cTime;
 
         public KamiGuiDisconnected(GuiDisconnected disconnected) {
-            super(disconnected.parentScreen, disconnected.reason, disconnected.message);
+            super(disconnected.parentScreen, disconnected.reason, disconnected.message); // TODO: AT
             cTime = System.currentTimeMillis();
         }
 
@@ -56,7 +57,7 @@ public class AutoReconnect extends Module {
             cTime = a;
 
             String s = "Reconnecting in " + Math.max(0, Math.floor((double) millis / 100) / 10) + "s";
-            fontRenderer.drawString(s, width / 2 - fontRenderer.getStringWidth(s) / 2, height - 16, 0xffffff, true);
+            fontRenderer.drawString(s, width / 2 - fontRenderer.getStringWidth(s) / 2, height - 16, 0xffffff);
         }
 
     }

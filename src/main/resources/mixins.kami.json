@@ -1,7 +1,7 @@
 {
   "required": true,
   "compatibilityLevel": "JAVA_8",
-  "package": "me.zeroeightsix.kami.mixin.client",
+  "package": "me.zeroeightsix.kami.mixin",
   "refmap": "mixins.kami.refmap.json",
   "client": [
     "MixinGuiChat",
@@ -15,7 +15,7 @@
     "MixinBlockSoulSand",
     "MixinEntityPig",
     "MixinGuiScreen",
-    "MixinBlockLiquid",
+    "MixinFlowingFluid",
     "MixinRenderPlayer",
     "MixinGuiPlayerTabOverlay",
     "MixinC00Handshake",

@@ -5,13 +5,11 @@ import me.zero.alpine.listener.Listener;
 import me.zeroeightsix.kami.module.Module;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 /**
  * Created by 086 on 2/10/2018.
@@ -34,7 +32,7 @@ public class AutoTool extends Module {
         double max = 0;
         for (int i = 0; i < 9; i++) {
             ItemStack stack = mc.player.inventory.getStackInSlot(i);
-            if (stack.isEmpty) continue;
+            if (stack.isEmpty()) continue;
             float speed = stack.getDestroySpeed(blockState);
             int eff;
             if (speed > 1) {
@@ -53,15 +51,15 @@ public class AutoTool extends Module {
         double maxDamage = 0;
         for (int i = 0; i < 9; i++) {
             ItemStack stack = mc.player.inventory.getStackInSlot(i);
-            if (stack.isEmpty) continue;
+            if (stack.isEmpty()) continue;
             if (stack.getItem() instanceof ItemTool) {
-                double damage = (((ItemTool) stack.getItem()).attackDamage + (double) EnchantmentHelper.getModifierForCreature(stack, EnumCreatureAttribute.UNDEFINED));
+                double damage = (((ItemTool) stack.getItem()).attackDamage + (double) EnchantmentHelper.getModifierForCreature(stack, CreatureAttribute.UNDEFINED)); // TODO: AT
                 if (damage > maxDamage) {
                     maxDamage = damage;
                     bestSlot = i;
                 }
             } else if (stack.getItem() instanceof ItemSword) {
-                double damage = (((ItemSword) stack.getItem()).getAttackDamage() + (double) EnchantmentHelper.getModifierForCreature(stack, EnumCreatureAttribute.UNDEFINED));
+                double damage = (((ItemSword) stack.getItem()).attackDamage + (double) EnchantmentHelper.getModifierForCreature(stack, CreatureAttribute.UNDEFINED));
                 if (damage > maxDamage) {
                     maxDamage = damage;
                     bestSlot = i;
@@ -73,7 +71,7 @@ public class AutoTool extends Module {
 
     private static void equip(int slot) {
         mc.player.inventory.currentItem = slot;
-        mc.playerController.syncCurrentPlayItem();
+        mc.playerController.syncCurrentPlayItem(); // TODO: AT
     }
 
 }

@@ -1,4 +1,4 @@
-package me.zeroeightsix.kami.mixin.client;
+package me.zeroeightsix.kami.mixin;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ChunkRenderContainer;

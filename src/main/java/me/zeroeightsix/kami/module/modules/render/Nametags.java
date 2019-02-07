@@ -40,7 +40,7 @@ public class Nametags extends Module {
     private Setting<Float> scale = register(Settings.floatBuilder("Scale").withMinimum(.5f).withMaximum(10f).withValue(1f).build());
     private Setting<Boolean> health = register(Settings.b("Health", true));
 
-    RenderItem itemRenderer = mc.getRenderItem();
+    ItemRenderer itemRenderer = mc.getRenderItem();
 
     @Override
     public void onWorldRender(RenderEvent event) {
@@ -112,7 +112,7 @@ public class Nametags extends Module {
         GlStateManager.enableTexture2D();
 
         GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
-        fontRendererIn.drawString(str, -i, 10, entityIn instanceof EntityPlayer ? Friends.isFriend(entityIn.getName()) ? 0x11ee11 : 0xffffff : 0xffffff);
+        fontRendererIn.drawString(str, -i, 10, entityIn instanceof EntityPlayer ? Friends.isFriend(entityIn.getName().getFormattedText()) ? 0x11ee11 : 0xffffff : 0xffffff);
         GlStateManager.glNormal3f(0.0F, 0.0F, 0.0F);
         glTranslatef(0, 20, 0);
 

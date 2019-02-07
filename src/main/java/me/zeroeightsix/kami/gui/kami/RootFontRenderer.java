@@ -53,9 +53,9 @@ public class RootFontRenderer implements FontRenderer {
         drawString(x,y,colour,text,true);
     }
 
-    public void drawString(int x, int y, int colour, String text, boolean shadow) {
+    public void drawString(int x, int y, int colour, String text, boolean shadow) { // TODO: Shadows
         prepare(x, y);
-        Minecraft.getMinecraft().fontRenderer.drawString(text, 0, 0, colour, shadow);
+        Minecraft.getMinecraft().fontRenderer.drawString(text, 0, 0, colour);
         pop(x,y);
     }
 

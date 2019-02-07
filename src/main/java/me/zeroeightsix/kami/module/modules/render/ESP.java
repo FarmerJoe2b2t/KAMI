@@ -46,7 +46,7 @@ public class ESP extends Module {
                         .forEach(e -> {
                             GlStateManager.pushMatrix();
                             Vec3d pos = EntityUtil.getInterpolatedPos(e, event.getPartialTicks());
-                            GlStateManager.translate(pos.x-mc.getRenderManager().renderPosX, pos.y-mc.getRenderManager().renderPosY, pos.z-mc.getRenderManager().renderPosZ);
+                            GlStateManager.translate(pos.x-mc.getRenderManager().renderPosX, pos.y-mc.getRenderManager().renderPosY, pos.z-mc.getRenderManager().renderPosZ); // TODO: AT
                             GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
                             GlStateManager.rotate(-viewerYaw, 0.0F, 1.0F, 0.0F);
                             GlStateManager.rotate((float)(isThirdPersonFrontal ? -1 : 1), 1.0F, 0.0F, 0.0F);

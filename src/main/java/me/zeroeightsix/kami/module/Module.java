@@ -5,14 +5,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 import me.zeroeightsix.kami.KamiMod;
 import me.zeroeightsix.kami.event.events.RenderEvent;
-import me.zeroeightsix.kami.gui.kami.KamiGUI;
 import me.zeroeightsix.kami.module.modules.movement.Sprint;
 import me.zeroeightsix.kami.setting.Setting;
 import me.zeroeightsix.kami.setting.Settings;
 import me.zeroeightsix.kami.setting.builder.SettingBuilder;
 import me.zeroeightsix.kami.util.Bind;
 import net.minecraft.client.Minecraft;
-import org.lwjgl.input.Keyboard;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

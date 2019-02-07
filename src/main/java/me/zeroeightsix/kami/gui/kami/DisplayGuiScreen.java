@@ -106,7 +106,7 @@ public class DisplayGuiScreen extends GuiScreen {
         if(scale == 0)
             scale = 1000;
         int scaleFactor = 0;
-        while(scaleFactor < scale && Wrapper.getMinecraft().displayWidth / (scaleFactor + 1) >= 320 && Wrapper.getMinecraft().displayHeight / (scaleFactor + 1) >= 240)
+        while(scaleFactor < scale && Wrapper.getMinecraft().mainWindow.getWidth() / (scaleFactor + 1) >= 320 && Wrapper.getMinecraft().mainWindow.getHeight() / (scaleFactor + 1) >= 240)
             scaleFactor++;
         if (scaleFactor == 0)
             scaleFactor = 1;
@@ -117,7 +117,7 @@ public class DisplayGuiScreen extends GuiScreen {
         Minecraft minecraft = Minecraft.getMinecraft();
         int scaleFactor = getScale();
         this.mouseX = Mouse.getX() / scaleFactor;
-        this.mouseY =  minecraft.displayHeight / scaleFactor - Mouse.getY() / scaleFactor - 1;
+        this.mouseY =  minecraft.mainWindow.getWindowY() / scaleFactor - Mouse.getY() / scaleFactor - 1;
     }
 
 }

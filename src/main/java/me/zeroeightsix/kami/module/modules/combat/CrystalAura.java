@@ -89,7 +89,7 @@ public class CrystalAura extends Module {
         List<BlockPos> blocks = findCrystalBlocks();
         List<Entity> entities = new ArrayList<>();
         if (players.getValue())
-            entities.addAll(mc.world.playerEntities.stream().filter(entityPlayer -> !Friends.isFriend(entityPlayer.getName())).collect(Collectors.toList()));
+            entities.addAll(mc.world.playerEntities.stream().filter(entityPlayer -> !Friends.isFriend(entityPlayer.getName().getFormattedText())).collect(Collectors.toList()));
         entities.addAll(mc.world.loadedEntityList.stream().filter(entity -> EntityUtil.isLiving(entity) && (EntityUtil.isPassive(entity) ? animals.getValue() : mobs.getValue())).collect(Collectors.toList()));
 
         BlockPos q = null;
@@ -100,11 +100,11 @@ public class CrystalAura extends Module {
                 double b = entity.getDistanceSq(blockPos);
                 if (b >= 169)
                     continue; // If this block if further than 13 (3.6^2, less calc) blocks, ignore it. It'll take no or very little damage
-                double d = calculateDamage(blockPos.x + .5, blockPos.y + 1, blockPos.z + .5, entity);
+                double d = calculateDamage(blockPos.getX() + .5, blockPos.getY() + 1, blockPos.getZ() + .5, entity);
                 if (d > damage) {
-                    double self = calculateDamage(blockPos.x + .5, blockPos.y + 1, blockPos.z + .5, mc.player);
+                    double self = calculateDamage(blockPos.getX() + .5, blockPos.getY() + 1, blockPos.getZ() + .5, mc.player);
                     // If this deals more damage to ourselves than it does to our target, continue. This is only ignored if the crystal is sure to kill our target but not us.
-                    // Also continue if our crystal is going to hurt us.. alot
+                    // Also continue if our crystal is going to hurt us.. a lot
                     if ((self > d && !(d < ((EntityLivingBase) entity).getHealth())) || self - .5 > mc.player.getHealth())
                         continue;
                     damage = d;
@@ -129,7 +129,7 @@ public class CrystalAura extends Module {
                 }
                 return;
             }
-            lookAtPacket(q.x + .5, q.y - .5, q.z + .5, mc.player);
+            lookAtPacket(q.getX() + .5, q.getY() - .5, q.getZ() + .5, mc.player);
             RayTraceResult result = mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(q.x + .5, q.y - .5d, q.z + .5));
             EnumFacing f;
             if (result == null || result.sideHit == null) f = EnumFacing.UP;
@@ -158,7 +158,8 @@ public class CrystalAura extends Module {
             KamiTessellator.release();
             if (renderEnt != null) {
                 Vec3d p = EntityUtil.getInterpolatedRenderPos(renderEnt, mc.getRenderPartialTicks());
-                Tracers.drawLineFromPosToPos(render.x - mc.getRenderManager().renderPosX + .5d, render.y - mc.getRenderManager().renderPosY + 1, render.z - mc.getRenderManager().renderPosZ + .5d, p.x, p.y, p.z, renderEnt.getEyeHeight(), 1, 1, 1, 1);
+                // TODO: AT
+                Tracers.drawLineFromPosToPos(render.getX() - mc.getRenderManager().renderPosX + .5d, render.getY() - mc.getRenderManager().renderPosY + 1, render.getZ() - mc.getRenderManager().renderPosZ + .5d, p.x, p.y, p.z, renderEnt.getEyeHeight(), 1, 1, 1, 1);
             }
         }
     }
@@ -247,7 +248,7 @@ public class CrystalAura extends Module {
     }
 
     private static float getDamageMultiplied(float damage) {
-        int diff = mc.world.getDifficulty().getDifficultyId();
+        int diff = mc.world.getDifficulty().getId();
         return damage * (diff == 0 ? 0 : (diff == 2 ? 1 : (diff == 1 ? 0.5f : 1.5f)));
     }
 
@@ -282,6 +283,7 @@ public class CrystalAura extends Module {
         Packet packet = event.getPacket();
         if (packet instanceof CPacketPlayer) {
             if (isSpoofingAngles) {
+                // TODO: AT
                 ((CPacketPlayer) packet).yaw = (float) yaw;
                 ((CPacketPlayer) packet).pitch = (float) pitch;
             }

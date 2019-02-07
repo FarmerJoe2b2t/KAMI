@@ -25,7 +25,7 @@ public class CustomChat extends Module {
             if (s.startsWith("/") && !commands.getValue()) return;
             s += KAMI_SUFFIX;
             if (s.length() >= 256) s = s.substring(0,256);
-            ((CPacketChatMessage) event.getPacket()).message = s;
+            ((CPacketChatMessage) event.getPacket()).message = s; // TODO: AT
         }
     });
 

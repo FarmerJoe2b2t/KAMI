@@ -1,4 +1,4 @@
-package me.zeroeightsix.kami.mixin.client;
+package me.zeroeightsix.kami.mixin;
 
 import com.google.common.base.Predicate;
 import me.zeroeightsix.kami.module.ModuleManager;

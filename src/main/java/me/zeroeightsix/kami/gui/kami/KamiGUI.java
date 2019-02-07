@@ -141,7 +141,7 @@ public class KamiGUI extends GUI {
 
             nexty = Math.max(y + frame.getHeight() + 10, nexty);
             x += frame.getWidth() + 10;
-            if (x > Wrapper.getMinecraft().displayWidth / 1.2f) {
+            if (x > Wrapper.getMinecraft().mainWindow.getWidth() / 1.2f) {
                 y = nexty;
                 nexty = y;
             }
@@ -203,7 +203,7 @@ public class KamiGUI extends GUI {
             information.setText("");
             information.addLine("\u00A7b" + KamiMod.KAMI_KANJI + "\u00A73 " + KamiMod.MODVER);
             information.addLine("\u00A7b" + Math.round(LagCompensator.INSTANCE.getTickRate()) + Command.SECTIONSIGN() + "3 tps");
-            information.addLine("\u00A7b" + Wrapper.getMinecraft().debugFPS + Command.SECTIONSIGN() + "3 fps");
+            information.addLine("\u00A7b" + Wrapper.getMinecraft().debugFPS + Command.SECTIONSIGN() + "3 fps"); // TODO: AT
 
 //            information.addLine("[&3" + Sprint.getSpeed() + "km/h&r]");
 
@@ -222,6 +222,7 @@ public class KamiGUI extends GUI {
 
             if (mc.player == null) return;
             List<EntityPlayer> entityList = mc.world.playerEntities;
+
 
             Map<String, Integer> players = new HashMap<>();
             for (Entity e : entityList) {
@@ -298,7 +299,7 @@ public class KamiGUI extends GUI {
 
             @Override
             public void onTick() {
-                boolean inHell = (mc.world.getBiome(mc.player.getPosition()).getBiomeName().equals("Hell"));
+                boolean inHell = (mc.world.getBiome(mc.player.getPosition()).getBiomeName().equals("Hell"));  // TODO: New biome recognition
 
                 int posX = (int) mc.player.posX;
                 int posY = (int) mc.player.posY;
@@ -351,7 +352,7 @@ public class KamiGUI extends GUI {
 
             nexty = Math.max(y + frame1.getHeight() + 10, nexty);
             x += frame1.getWidth() + 10;
-            if (x * DisplayGuiScreen.getScale() > Wrapper.getMinecraft().displayWidth / 1.2f) {
+            if (x * DisplayGuiScreen.getScale() > Wrapper.getMinecraft().mainWindow.getWidth() / 1.2f) {
                 y = nexty;
                 nexty = y;
                 x = 10;
@@ -363,7 +364,7 @@ public class KamiGUI extends GUI {
 
     private static String getEntityName(@Nonnull Entity entity) {
         if (entity instanceof EntityItem) {
-            return TextFormatting.DARK_AQUA + ((EntityItem) entity).getItem().getItem().getItemStackDisplayName(((EntityItem) entity).getItem());
+            return ((EntityItem) entity).getItem().getItem().getDisplayName(((EntityItem) entity).getItem()).applyTextStyle(TextFormatting.DARK_AQUA);
         }
         if (entity instanceof EntityWitherSkull) {
             return TextFormatting.DARK_GRAY + "Wither skull";
@@ -387,7 +388,7 @@ public class KamiGUI extends GUI {
             return "Thrown snowball";
         }
 
-        return entity.getName();
+        return entity.getName().getFormattedText();
     }
 
     public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
@@ -414,10 +415,10 @@ public class KamiGUI extends GUI {
         if (docking.isTop())
             component.setY(DOCK_OFFSET);
         if (docking.isBottom())
-            component.setY((Wrapper.getMinecraft().displayHeight / DisplayGuiScreen.getScale()) - component.getHeight() - DOCK_OFFSET);
+            component.setY((Wrapper.getMinecraft().mainWindow.getHeight() / DisplayGuiScreen.getScale()) - component.getHeight() - DOCK_OFFSET);
         if (docking.isLeft())
             component.setX(DOCK_OFFSET);
         if (docking.isRight())
-            component.setX((Wrapper.getMinecraft().displayWidth / DisplayGuiScreen.getScale()) - component.getWidth() - DOCK_OFFSET);
+            component.setX((Wrapper.getMinecraft().mainWindow.getWidth() / DisplayGuiScreen.getScale()) - component.getWidth() - DOCK_OFFSET);
     }
 }
