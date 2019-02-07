@@ -8,7 +8,6 @@ import me.zeroeightsix.kami.setting.Setting;
 import me.zeroeightsix.kami.setting.Settings;
 import net.minecraft.client.gui.GuiConnecting;
 import net.minecraft.client.gui.GuiDisconnected;
-import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
 
 /**
@@ -38,19 +37,19 @@ public class AutoReconnect extends Module {
         long cTime;
 
         public KamiGuiDisconnected(GuiDisconnected disconnected) {
-            super(disconnected.parentScreen, disconnected.reason, disconnected.message); // TODO: AT
+            super(disconnected.parentScreen, disconnected.reason, disconnected.message);
             cTime = System.currentTimeMillis();
         }
 
         @Override
-        public void updateScreen() {
+        public void tick() {
             if (millis <= 0)
                 mc.displayGuiScreen(new GuiConnecting(parentScreen, mc, cServer == null ? mc.currentServerData : cServer));
         }
 
         @Override
-        public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-            super.drawScreen(mouseX, mouseY, partialTicks);
+        public void render(int mouseX, int mouseY, float partialTicks) {
+            super.render(mouseX, mouseY, partialTicks);
 
             long a = System.currentTimeMillis();
             millis -= a - cTime;

@@ -97,7 +97,6 @@ public class EntityUtil {
     }
 
     public static Vec3d getInterpolatedRenderPos(Entity entity, float ticks) {
-        // TODO: AT
         return getInterpolatedPos(entity, ticks).subtract(Wrapper.getMinecraft().getRenderManager().renderPosX,Wrapper.getMinecraft().getRenderManager().renderPosY,Wrapper.getMinecraft().getRenderManager().renderPosZ);
     }
 

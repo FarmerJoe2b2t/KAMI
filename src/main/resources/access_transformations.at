@@ -1,3 +1,8 @@
 public field cye o D ## net/minecraft/client/renderer/entity/RenderManager#renderPosX
 public field cye p D ## net/minecraft/client/renderer/entity/RenderManager#renderPosY
 public field cye q D ## net/minecraft/client/renderer/entity/RenderManager#renderPosZ
+public field cfi aj I ## net/minecraft/client/Minecraft#debugFPS
+public field cfi K Lcqy; ## net/minecraft/client/Minecraft#currentServerData
+public field cjf f Lij; ## net/minecraft/client/gui/GuiDisconnected#message
+public field cjf a Ljava/lang/String; ## net/minecraft/client/gui/GuiDisconnected#reason
+public field cjf h Lcjs; ## net/minecraft/client/gui/GuiDisconnected#parentScreen

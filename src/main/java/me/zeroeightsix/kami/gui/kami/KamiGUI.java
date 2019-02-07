@@ -203,7 +203,7 @@ public class KamiGUI extends GUI {
             information.setText("");
             information.addLine("\u00A7b" + KamiMod.KAMI_KANJI + "\u00A73 " + KamiMod.MODVER);
             information.addLine("\u00A7b" + Math.round(LagCompensator.INSTANCE.getTickRate()) + Command.SECTIONSIGN() + "3 tps");
-            information.addLine("\u00A7b" + Wrapper.getMinecraft().debugFPS + Command.SECTIONSIGN() + "3 fps"); // TODO: AT
+            information.addLine("\u00A7b" + Wrapper.getMinecraft().debugFPS + Command.SECTIONSIGN() + "3 fps");
 
 //            information.addLine("[&3" + Sprint.getSpeed() + "km/h&r]");
 
@@ -295,11 +295,11 @@ public class KamiGUI extends GUI {
         frame.setPinneable(true);
         Label coordsLabel = new Label("");
         coordsLabel.addTickListener(new TickListener() {
-            Minecraft mc = Minecraft.getMinecraft();
+            Minecraft mc = Minecraft.getInstance();
 
             @Override
             public void onTick() {
-                boolean inHell = (mc.world.getBiome(mc.player.getPosition()).getBiomeName().equals("Hell"));  // TODO: New biome recognition
+                boolean inHell = (mc.world.getBiome(mc.player.getPosition()).getDisplayName().getFormattedText().equals("Hell"));
 
                 int posX = (int) mc.player.posX;
                 int posY = (int) mc.player.posY;
@@ -364,7 +364,7 @@ public class KamiGUI extends GUI {
 
     private static String getEntityName(@Nonnull Entity entity) {
         if (entity instanceof EntityItem) {
-            return ((EntityItem) entity).getItem().getItem().getDisplayName(((EntityItem) entity).getItem()).applyTextStyle(TextFormatting.DARK_AQUA);
+            return ((EntityItem) entity).getItem().getItem().getDisplayName(((EntityItem) entity).getItem()).applyTextStyle(TextFormatting.DARK_AQUA).getFormattedText();
         }
         if (entity instanceof EntityWitherSkull) {
             return TextFormatting.DARK_GRAY + "Wither skull";

@@ -1,5 +1,7 @@
 package rift;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -24,6 +26,7 @@ import java.util.zip.ZipInputStream;
 public class AccessTransformerUpdater {
 
     private static final Pattern visibilityPattern = Pattern.compile("(public|protected|default|private)(-f)?");
+    private static final Pattern classPattern = Pattern.compile("L(.*);");
 
     public static class ClassMapping {
         public final Set<String> constructors = new HashSet<>();
@@ -252,6 +255,21 @@ public class AccessTransformerUpdater {
 
                 System.out.println("Signature for " + target + "?");
                 String signature = scanner.nextLine();
+
+                StringBuffer buffer = new StringBuffer();
+                Matcher matcher = classPattern.matcher(signature);
+                while (matcher.find()) {
+                    String path = matcher.group(1);
+
+                    ClassMapping mapping = srg.get(path);
+                    if (mapping == null) {
+                        System.err.println("No class found: " + path);
+                    } else {
+                        matcher.appendReplacement(buffer, "L" + mapping.notchName + ";");
+                    }
+                }
+                matcher.appendTail(buffer);
+                signature = buffer.toString();
                 for (int i = 0; i < result.length; i++) {
                     result[i] += " " + signature;
                 }

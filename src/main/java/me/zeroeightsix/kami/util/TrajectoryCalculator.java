@@ -5,10 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.*;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 
 import java.util.List;
 
@@ -76,7 +73,6 @@ public class TrajectoryCalculator {
             double[] ipos = interpolate(shooter);
 
             // Set the starting angles of the entity
-            // TODO: AT
             this.setLocationAndAngles(ipos[0] + Wrapper.getMinecraft().getRenderManager().renderPosX, ipos[1] + this.shooter.getEyeHeight() + Wrapper.getMinecraft().getRenderManager().renderPosY, ipos[2] + Wrapper.getMinecraft().getRenderManager().renderPosZ,
                     this.shooter.rotationYaw, this.shooter.rotationPitch);
             Vec3d startingOffset = new Vec3d(MathHelper.cos(this.yaw / 180.0F * (float) Math.PI) * 0.16F, 0.1d,
@@ -99,7 +95,7 @@ public class TrajectoryCalculator {
             // Get the predicted positions in the world
             Vec3d prediction = this.position.add(this.motion);
             // Check if we've collided with a block in the same time
-            RayTraceResult blockCollision = this.shooter.getEntityWorld().rayTraceBlocks(this.position, prediction, false, true, false);
+            RayTraceResult blockCollision = this.shooter.getEntityWorld().rayTraceBlocks(this.position, prediction, RayTraceFluidMode.ALWAYS, true, false);
             // Check if we got a block collision
             if (blockCollision != null) {
                 prediction = blockCollision.hitVec;
@@ -198,7 +194,7 @@ public class TrajectoryCalculator {
                     // A local instance of the bow we are holding
                     ItemBow bow = (ItemBow) item;
                     // Check how long we've been using the bow
-                    int useDuration = bow.getMaxItemUseDuration(this.shooter.getHeldItem(EnumHand.MAIN_HAND)) - this.shooter.getItemInUseCount();
+                    int useDuration = bow.getUseDuration(this.shooter.getHeldItem(EnumHand.MAIN_HAND)) - this.shooter.getItemInUseCount();
                     float velocity = (float) useDuration / 20.0F;
                     velocity = (velocity * velocity + velocity * 2.0F) / 3.0F;
                     if (velocity > 1.0F) {
