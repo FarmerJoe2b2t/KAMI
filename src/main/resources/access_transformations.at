@@ -1,0 +1,3 @@
+public field cye o D ## net/minecraft/client/renderer/entity/RenderManager#renderPosX
+public field cye p D ## net/minecraft/client/renderer/entity/RenderManager#renderPosY
+public field cye q D ## net/minecraft/client/renderer/entity/RenderManager#renderPosZ
